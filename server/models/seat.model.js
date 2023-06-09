@@ -1,43 +1,12 @@
-const SeatModel = require("../models/seat.model");
+const mongoose = require("mongoose");
 
-// Function to create seats and save them in the database
-exports.createSeats = async (req, res) => {
-    const seats = []; // Empty array to store the seat objects
+// seat schema
+const seatSchema = mongoose.Schema({
+    seatNumber: { type: String, required: true },
+    isBooked: { type: Boolean, default: false },
+});
 
-    // Loop to create 80 seats
-    for (let i = 0; i < 80; i++) {
-        // Calculate the row letter based on index
-        const rowLetter = String.fromCharCode("a".charCodeAt(0) + Math.floor(i / 7));
+// seat model
+const SeatModel = new mongoose.model("seat", seatSchema);
 
-        // Calculate the column number based on index
-        const colNumber = (i % 7) + 1;
-
-        // seat number
-        const seatNumber = rowLetter + colNumber;
-
-        // Create a new seat object
-        const seat = new SeatModel({ seatNumber, isBooked: false });
-        seats.push(seat);
-    }
-
-    try {
-        // Insert all the seats into the database 
-        await SeatModel.insertMany(seats);
-        req.status(200).json({ message: "Seats created succesfully", seats })
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({ message: error.mesage });
-    }
-};
-
-//  Get all seats 
-exports.getAllSeats = async (req, res) => {
-    try {
-        const allSeats = await SeatModel.find(); // Retrieve all seats from the database
-        res.status(200).json({ seats: allSeats }); // Send the retrieved seats 
-    } catch (error) {
-        //error handling
-        console.error(error);
-        res.status(500).json({ error: 'Failed to retrieve seats.' });
-    }
-};
+module.exports = SeatModel;
