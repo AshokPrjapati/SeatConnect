@@ -5,9 +5,9 @@ const { createSeats, getAllSeats } = require("../controller/seat.controller");
 const seatRouter = express.Router();
 
 // Route for creating seats
-seatRouter.post("/create_seats", verifyAdmin, createSeats);
+seatRouter.post("/create", verifyAdmin, createSeats);
 
 // Route for retrieving all seats
-seatRouter.get("/all_seats", getAllSeats);
+seatRouter.get("/get_all", getAllSeats);
 
 module.exports = seatRouter;
