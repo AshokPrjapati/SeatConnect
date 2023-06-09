@@ -1,6 +1,6 @@
 const express = require("express");
 const { verifyAdmin } = require("../middleware/verifyAdmin");
-const { createSeats, getAllSeats, deleteAllSeats } = require("../controller/seat.controller");
+const { createSeats, getAllSeats, deleteAllSeats, bookSeats } = require("../controller/seat.controller");
 
 const seatRouter = express.Router();
 
@@ -12,5 +12,8 @@ seatRouter.get("/get_all", getAllSeats);
 
 // Route for deleting all seats
 seatRouter.delete("/delete_all", verifyAdmin, deleteAllSeats);
+
+// Route for booking seats
+seatRouter.post("/book", bookSeats);
 
 module.exports = seatRouter;
