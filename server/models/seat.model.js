@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const seatSchema = mongoose.Schema({
     seatNumber: { type: String, required: true },
     isBooked: { type: Boolean, default: false },
+}, {
+    versionKey: false
 });
 
 // seat model

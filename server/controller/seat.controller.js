@@ -23,7 +23,7 @@ exports.createSeats = async (req, res) => {
     try {
         // Insert all the seats into the database 
         await SeatModel.insertMany(seats);
-        req.status(200).json({ message: "Seats created succesfully", seats })
+        res.status(200).json({ message: "Seats created succesfully", seats })
     } catch (error) {
         console.log(error);
         res.status(500).send({ message: error.mesage });
