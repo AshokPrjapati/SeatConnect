@@ -1,7 +1,7 @@
 const SeatModel = require("../models/seat.model");
 
 // Function to create seats and save them in the database
-exports.createSeats = async () => {
+exports.createSeats = async (req, res) => {
     const seats = []; // Empty array to store the seat objects
 
     // Loop to create 80 seats
@@ -12,6 +12,7 @@ exports.createSeats = async () => {
         // Calculate the column number based on index
         const colNumber = (i % 7) + 1;
 
+        // seat number
         const seatNumber = rowLetter + colNumber;
 
         // Create a new seat object
@@ -22,8 +23,21 @@ exports.createSeats = async () => {
     try {
         // Insert all the seats into the database 
         await SeatModel.insertMany(seats);
-        console.log("Seats created successfully.");
+        req.status(200).json({ message: "Seats created succesfully", seats })
     } catch (error) {
         console.log(error);
+        res.status(500).send({ message: error.mesage });
+    }
+};
+
+//  Get all seats 
+exports.getAllSeats = async (req, res) => {
+    try {
+        const allSeats = await SeatModel.find(); // Retrieve all seats from the database
+        res.status(200).json({ seats: allSeats }); // Send the retrieved seats 
+    } catch (error) {
+        //error handling
+        console.error(error);
+        res.status(500).json({ error: 'Failed to retrieve seats.' });
     }
 };
