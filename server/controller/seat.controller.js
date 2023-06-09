@@ -41,3 +41,14 @@ exports.getAllSeats = async (req, res) => {
         res.status(500).json({ error: 'Failed to retrieve seats.' });
     }
 };
+
+// Delete all seats
+exports.deleteAllSeats = async (req, res) => {
+    try {
+        await SeatModel.deleteMany(); // Delete all documents in the SeatModel collection
+        res.status(200).json({ message: "All seats deleted successfully." });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to delete all seats." });
+    }
+};
