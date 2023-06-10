@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Stack, Text } from "@chakra-ui/react";
 import { MdEventAvailable } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -55,7 +56,8 @@ const Home = () => {
                     <Button size={"lg"} colorScheme="orange">
                         Book Seats
                     </Button>
-                    <Button
+                    <Button as={Link}
+                        to="/seats"
                         size={"lg"}
                         leftIcon={<MdEventAvailable />}
                         colorScheme="facebook"
