@@ -21,6 +21,7 @@ const Seat = ({ seatNumber, isBooked }: SeatProps) => {
                 <Image
                     width={"2rem"}
                     src={isBooked ? "/images/booked.png" : "/images/unbooked.png"}
+                    alt={isBooked ? "B" : "A"}
                 />
                 <Text>{seatNumber}</Text>
             </Stack>
