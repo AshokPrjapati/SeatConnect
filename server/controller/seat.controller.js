@@ -33,10 +33,10 @@ exports.createSeats = async (req, res) => {
 //  Get all seats 
 exports.getAllSeats = async (req, res) => {
     try {
-        const allSeats = await SeatModel.find(); // Retrieve all seats from the database
-        res.status(200).json({ seats: allSeats }); // Send the retrieved seats 
+        const allSeats = await SeatModel.find().sort({ seatNumber: 1 }); // Sort seats by seatNumber in ascending order
+        res.status(200).json({ seats: allSeats }); // Send the sorted seats 
     } catch (error) {
-        //error handling
+        // Error handling
         console.error(error);
         res.status(500).json({ error: 'Failed to retrieve seats.' });
     }
