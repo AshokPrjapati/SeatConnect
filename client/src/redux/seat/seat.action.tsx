@@ -7,9 +7,8 @@ export const getAllSeats = () => async (dispatch: Dispatch) => {
     dispatch({ type: GET_ALL_SEATS_LOADING });
     try {
         const res = await axios('/seat/get_all');
-        const seats = res.data;
-        console.log(seats);
-        dispatch({ type: GET_ALL_SEATS_SUCCESS, payload: seats });
+        const data = res.data;
+        dispatch({ type: GET_ALL_SEATS_SUCCESS, payload: data.seats });
     } catch (error) {
         console.log(error);
         dispatch({ type: GET_ALL_SEATS_LOADING });

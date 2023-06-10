@@ -10,6 +10,9 @@ const Navbar = () => {
             shadow={"xl"}
             bg={"c_purple"}
             p={".8rem 2rem"}
+            position={"sticky"}
+            top={0}
+            zIndex={99}
         >
             <Flex as={Link} to="/" fontSize={"1.5rem"} fontWeight={"bold"}>
                 <Text color={"c_red"}>Seat</Text>
