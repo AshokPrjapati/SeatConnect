@@ -31,11 +31,11 @@ export const reducer = (state = initialState, { type, payload }: any) => {
         case BOOK_SEATS_ERROR:
             return { ...state, bookLoading: false, bookError: true }; // Set bookLoading to false on error while booking seats
         case RESET_SEATS_LOADING:
-            return { ...state, resetLoading: true, resetError: false };
+            return { ...state, resetLoading: true, resetError: false }; // Set resetLoading to true when resetting seats
         case RESET_SEATS_SUCCESS:
-            return { ...state, ...initialState };
+            return { ...state, ...initialState }; // Reset the state to initial state on successful reset
         case RESET_SEATS_ERROR:
-            return { ...state, resetLoading: false, resetError: true };
+            return { ...state, resetLoading: false, resetError: true }; // Set resetLoading to false on error while resetting seats
         default:
             return state;
     }

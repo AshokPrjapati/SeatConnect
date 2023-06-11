@@ -51,6 +51,7 @@ exports.bookSeats = async (req, res) => {
         const availableSeats = await SeatModel.find({ isBooked: false }); // total available seats
 
         let bookedSeats = []; // Store the seat numbers that were booked
+        let isSeatFound = false;
 
         //  priority -> book the all seats in one row (if possible)
         for (let i = 0; i <= totalSeats.length - numSeats; i++) {
@@ -75,13 +76,15 @@ exports.bookSeats = async (req, res) => {
                     { isBooked: true }
                 );
 
+                isSeatFound = true;
+
                 res.status(200).json({ message: "Seats booked successfully.", bookedSeats });
                 return; // out from loop
             }
         }
 
         // If seats are not available in one row, book the nearby seats
-        if (availableSeats.length >= numSeats) {
+        if (!isSeatFound && availableSeats.length >= numSeats) {
             let minDistance = Infinity;
             let startIndex = 0;
 

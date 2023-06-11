@@ -8,9 +8,6 @@ export const ToastType = {
     loading: "loading"
 }
 
-interface IStatus {
-    status: "info" | "warning" | "success" | "error" | "loading" | undefined
-}
 
 const UseToastMsg = () => {
     const toast = useToast();

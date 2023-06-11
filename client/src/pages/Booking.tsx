@@ -1,36 +1,43 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Box, Flex, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 
 import InputBox from "../components/booking/InputBox";
 import SeatsLayout from "../components/seats/SeatsLayout";
 
 import { RootState } from "../redux/store";
-import { bookSeats } from "../redux/seat/seat.action";
+import { bookSeats, getAllSeats } from "../redux/seat/seat.action";
 
 import UseToastMsg, { ToastType } from "../hooks/useToastMsg";
 import { SeatProps } from "../types";
 
+// Component for booking seats
 export const Booking = () => {
-    const { bookLoading, bookError, bookedSeats } = useSelector(
+    const { bookedSeats } = useSelector(
         (store: RootState) => store.seatsManager
     );
     const dispatch: Dispatch<any> = useDispatch();
     const { Toast } = UseToastMsg();
 
+    // Function to handle seat booking
     const handleBook = useCallback(
         (seatCount: number) => {
             if (seatCount && seatCount <= 7 && seatCount > 0) {
                 dispatch(bookSeats(seatCount, Toast));
             } else
-                Toast("Total seats must be less than 8 and atleast 1", ToastType.error);
+                Toast("Total seats must be less than 8 and at least 1", ToastType.error);
         },
         [dispatch, Toast]
     );
 
+    // useEffect(() => {
+    //     dispatch(getAllSeats());
+    // }, [])
+
     return (
+        // Booking component layout
         <Flex
             width={{ base: "90vw", md: "70vw" }}
             maxW={{ base: "95vw", md: "90vw" }}
@@ -42,6 +49,7 @@ export const Booking = () => {
             flexDir={{ base: "column", md: "row" }}
         >
             <Stack textAlign={{ base: "center", md: "left" }} w={"max-content"} m={"auto"}>
+                {/* Input box for entering seat quantity */}
                 <InputBox
                     actionLabel={"Book"}
                     placeholder="Enter Number of Seats"
@@ -49,6 +57,7 @@ export const Booking = () => {
                     label={"Enter the seat quantity"}
                 />
 
+                {/* Display recently booked seats */}
                 {bookedSeats.length !== 0 && (
                     <>
                         <Text fontWeight={"bold"} pt={"1rem"}>
@@ -59,6 +68,7 @@ export const Booking = () => {
                             gap={".5rem"}
                             justifyContent={{ base: "center", md: "flex-start" }}
                         >
+                            {/* Display each booked seat */}
                             {bookedSeats.map((seat: SeatProps) => (
                                 <Box
                                     key={seat._id}
@@ -76,6 +86,7 @@ export const Booking = () => {
                 )}
             </Stack>
 
+            {/* Component for displaying seat layout */}
             <Stack>
                 <SeatsLayout maxH="80vh" overflow="auto" showLatestBooking={true} />
             </Stack>

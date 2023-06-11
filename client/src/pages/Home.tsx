@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { Box, Button, Flex, Stack, Text } from "@chakra-ui/react";
 import { MdEventAvailable } from "react-icons/md";
 
+// Home component for the landing page
 const Home = () => {
     return (
         <>
+            {/* Background image section */}
             <Box
                 backgroundImage={"/images/bg3.png"}
                 width={"100%"}
@@ -12,6 +14,7 @@ const Home = () => {
                 objectFit={"contain"}
                 backgroundRepeat={"no-repeat"}
             >
+                {/* Overlay section */}
                 <Flex
                     align={"center"}
                     justify={"center"}
@@ -20,6 +23,7 @@ const Home = () => {
                     h="inherit"
                     w="100vw"
                 >
+                    {/* Text section */}
                     <Flex
                         fontSize={"2rem"}
                         fontWeight={"bold"}
@@ -42,6 +46,8 @@ const Home = () => {
                     </Flex>
                 </Flex>
             </Box>
+
+            {/* Button section */}
             <Stack
                 shadow={"2xl"}
                 w={"80%"}
@@ -66,7 +72,13 @@ const Home = () => {
                     flexDir={{ base: "column", md: "row" }}
                     p="1rem"
                 >
-                    <Button as={Link} to="/booking" size={"lg"} colorScheme="orange" boxShadow="0 10px 10px rgba(2,2,2,.8)"
+                    {/* Button for booking seats */}
+                    <Button
+                        as={Link}
+                        to="/booking"
+                        size={"lg"}
+                        colorScheme="orange"
+                        boxShadow="0 10px 10px rgba(2,2,2,.8)"
                         _hover={{
                             boxShadow: "0 10px 20px rgba(2,2,2,.8)",
                             transform: "scale(105%)"
@@ -75,6 +87,8 @@ const Home = () => {
                     >
                         Book Seats
                     </Button>
+
+                    {/* Button for checking seat availability */}
                     <Button
                         as={Link}
                         to="/seats"
@@ -91,7 +105,7 @@ const Home = () => {
                         Check Seats Availability
                     </Button>
                 </Flex>
-            </Stack >
+            </Stack>
         </>
     );
 };

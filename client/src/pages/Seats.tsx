@@ -47,7 +47,7 @@ const Seats = () => {
                     <h1>Oops! Something went wrong</h1>
                 ) : (
                     // Render the seats layout
-                    <SeatsLayout maxH="80vh" overflow="auto" />
+                    <SeatsLayout maxH="80vh" overflow="auto" showLatestBooking={false} />
                 )}
             </Box>
         </Stack>

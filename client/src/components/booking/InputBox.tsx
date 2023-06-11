@@ -1,6 +1,7 @@
 import { useCallback, useRef } from "react";
-import { Box, Button, Flex, FormControl, Input, InputGroup, Stack, Text } from "@chakra-ui/react";
+import { Button, Input, InputGroup, Stack, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../../redux/store";
 
 interface InputBoxProps {

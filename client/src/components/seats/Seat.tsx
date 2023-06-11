@@ -1,6 +1,8 @@
-import { Image, Stack, Text } from "@chakra-ui/react";
-import { SeatProps } from "../../types";
 import { useSelector } from "react-redux";
+import { Image, Stack, Text } from "@chakra-ui/react";
+
+import { SeatProps } from "../../types";
+
 import { RootState } from "../../redux/store";
 
 type SafeSeatProps = SeatProps & { showLatestBooking?: boolean };
@@ -10,6 +12,7 @@ const Seat = ({ seatNumber, isBooked, showLatestBooking }: SafeSeatProps) => {
     let isPresent;
 
     if (showLatestBooking) {
+        // Check if the seat is present in the bookedSeats array
         isPresent = bookedSeats?.some(
             (seat: SeatProps) => seat.seatNumber === seatNumber
         );
