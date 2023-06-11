@@ -1,13 +1,15 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import SeatsLayout from "../components/seats/SeatsLayout"
-import { RootState } from "../redux/store"
-import { Dispatch } from "redux"
-import { getAllSeats } from "../redux/seat/seat.action"
-import { Heading, Stack } from "@chakra-ui/react"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import SeatsLayout from "../components/seats/SeatsLayout";
+import { RootState } from "../redux/store";
+import { Dispatch } from "redux";
+import { getAllSeats } from "../redux/seat/seat.action";
+import { Box, Heading, Spinner, Stack } from "@chakra-ui/react";
 
 const Seats = () => {
-    const { allSeats } = useSelector((store: RootState) => store.seatsManager);
+    const { fetchLoading, fetchError } = useSelector(
+        (store: RootState) => store.seatsManager
+    );
     const dispatch: Dispatch<any> = useDispatch();
 
     useEffect(() => {
@@ -16,10 +18,26 @@ const Seats = () => {
 
     return (
         <Stack w={"max-content"} m={"2rem auto"} gap={"1rem"}>
-            <Heading textAlign={"center"} fontSize={"3xl"} color="c_red">Status of Seats</Heading>
-            {allSeats.length ? <SeatsLayout maxH={"80vh"} overflow="auto" /> : <h1>Loading...</h1>}
-        </Stack >
-    )
-}
+            <Heading textAlign={"center"} fontSize={"3xl"} color="c_red">
+                Status of Seats
+            </Heading>
+            <Box textAlign="center">
+                {fetchLoading ? (
+                    <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        size="xl"
+                        color="c_red"
+                    />
+                ) : fetchError ? (
+                    <h1>Oops! Something went wrong</h1>
+                ) : (
+                    <SeatsLayout maxH="80vh" overflow="auto" />
+                )}
+            </Box>
+        </Stack>
+    );
+};
 
-export default Seats
+export default Seats;

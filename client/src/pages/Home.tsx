@@ -16,16 +16,29 @@ const Home = () => {
                     align={"center"}
                     justify={"center"}
                     p={"1rem"}
-                    style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+                    style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
                     h="inherit"
                     w="100vw"
                 >
-                    <Flex fontSize={"2rem"} fontWeight={"bold"} textAlign={"center"} flexDir={{ base: "column", md: "row" }}>
-                        <Text color={"c_white"} mr=".5rem">
+                    <Flex
+                        fontSize={"2rem"}
+                        fontWeight={"bold"}
+                        textAlign={"center"}
+                        flexDir={{ base: "column", md: "row" }}
+                    >
+                        <Text
+                            color={"c_white"}
+                            mr=".5rem"
+                            filter="drop-shadow(0 0 5px black)"
+                        >
                             Welcome to
                         </Text>
-                        <Text color={"c_red"}>Seat</Text>
-                        <Text color={"c_white"}>Connect</Text>
+                        <Text color={"c_red"} filter="drop-shadow(0 0 5px black)">
+                            Seat
+                        </Text>
+                        <Text color={"c_white"} filter="drop-shadow(0 0 5px black)">
+                            Connect
+                        </Text>
                     </Flex>
                 </Flex>
             </Box>
@@ -53,19 +66,32 @@ const Home = () => {
                     flexDir={{ base: "column", md: "row" }}
                     p="1rem"
                 >
-                    <Button size={"lg"} colorScheme="orange">
+                    <Button as={Link} to="/booking" size={"lg"} colorScheme="orange" boxShadow="0 10px 10px rgba(2,2,2,.8)"
+                        _hover={{
+                            boxShadow: "0 10px 20px rgba(2,2,2,.8)",
+                            transform: "scale(105%)"
+                        }}
+                        transition=".3s ease-in-out"
+                    >
                         Book Seats
                     </Button>
-                    <Button as={Link}
+                    <Button
+                        as={Link}
                         to="/seats"
                         size={"lg"}
                         leftIcon={<MdEventAvailable />}
                         colorScheme="facebook"
+                        boxShadow="0 10px 10px rgba(2,2,2,.8)"
+                        _hover={{
+                            boxShadow: "0 10px 20px rgba(2,2,2,.8)",
+                            transform: "scale(105%)"
+                        }}
+                        transition=".3s ease-in-out"
                     >
                         Check Seats Availability
                     </Button>
                 </Flex>
-            </Stack>
+            </Stack >
         </>
     );
 };

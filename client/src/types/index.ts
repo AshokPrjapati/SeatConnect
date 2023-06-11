@@ -6,8 +6,11 @@ export interface SeatProps {
 
 export interface SeatReducerProps {
     fetchLoading: boolean,
+    fetchError: boolean,
     bookLoading: boolean,
+    bookError: boolean,
     updateLoading: boolean,
+    updateError: boolean,
     allSeats: SeatProps[],
     bookedSeats: SeatProps[],
 }
