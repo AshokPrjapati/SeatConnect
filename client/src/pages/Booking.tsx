@@ -15,7 +15,7 @@ import { SeatProps } from "../types";
 
 // Component for booking seats
 export const Booking = () => {
-    const { bookedSeats } = useSelector(
+    const { bookedSeats, allSeats } = useSelector(
         (store: RootState) => store.seatsManager
     );
     const dispatch: Dispatch<any> = useDispatch();
@@ -33,8 +33,8 @@ export const Booking = () => {
     );
 
     useEffect(() => {
-        dispatch(getAllSeats());
-    }, [])
+        if (!allSeats.length) dispatch(getAllSeats());
+    }, [allSeats])
 
     return (
         // Booking component layout
