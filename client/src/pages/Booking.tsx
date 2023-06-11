@@ -32,9 +32,9 @@ export const Booking = () => {
         [dispatch, Toast]
     );
 
-    // useEffect(() => {
-    //     dispatch(getAllSeats());
-    // }, [])
+    useEffect(() => {
+        dispatch(getAllSeats());
+    }, [])
 
     return (
         // Booking component layout
