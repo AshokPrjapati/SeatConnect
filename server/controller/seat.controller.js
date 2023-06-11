@@ -1,25 +1,9 @@
+const { generateSeats } = require("../helper/seatGenerator");
 const SeatModel = require("../models/seat.model");
 
-// Function to create seats and save them in the database
+// save created seats in the database
 exports.createSeats = async (req, res) => {
-    const seats = []; // Empty array to store the seat objects
-
-    // Loop to create 80 seats
-    for (let i = 0; i < 80; i++) {
-        // Calculate the row letter based on index
-        const rowLetter = String.fromCharCode("a".charCodeAt(0) + Math.floor(i / 7));
-
-        // Calculate the column number based on index
-        const colNumber = (i % 7) + 1;
-
-        // seat number
-        const seatNumber = rowLetter + colNumber;
-
-        // Create a new seat object
-        const seat = new SeatModel({ seatNumber, isBooked: false });
-        seats.push(seat);
-    }
-
+    const seats = generateSeats();
     try {
         // Insert all the seats into the database 
         await SeatModel.insertMany(seats);
@@ -129,5 +113,19 @@ exports.bookSeats = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Failed to book seats." });
+    }
+}
+
+
+// seat reset
+exports.resetSeats = async (req, res) => {
+    try {
+        await await SeatModel.deleteMany();
+        const seats = generateSeats();
+        await SeatModel.insertMany(seats);
+        return res.status(200).json({ message: "Seats resetted succesfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Failed to reset." });
     }
 }

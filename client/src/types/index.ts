@@ -11,6 +11,8 @@ export interface SeatReducerProps {
     bookError: boolean,
     updateLoading: boolean,
     updateError: boolean,
+    resetLoading: boolean,
+    resetError: boolean,
     allSeats: SeatProps[],
     bookedSeats: SeatProps[],
 }

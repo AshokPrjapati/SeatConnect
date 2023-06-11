@@ -1,7 +1,20 @@
 import { Image, Stack, Text } from "@chakra-ui/react";
 import { SeatProps } from "../../types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
-const Seat = ({ seatNumber, isBooked }: SeatProps) => {
+type SafeSeatProps = SeatProps & { showLatestBooking?: boolean };
+
+const Seat = ({ seatNumber, isBooked, showLatestBooking }: SafeSeatProps) => {
+    const { bookedSeats } = useSelector((store: RootState) => store.seatsManager);
+    let isPresent;
+
+    if (showLatestBooking) {
+        isPresent = bookedSeats?.some(
+            (seat: SeatProps) => seat.seatNumber === seatNumber
+        );
+    }
+
     return (
         <>
             <Stack
@@ -14,13 +27,19 @@ const Seat = ({ seatNumber, isBooked }: SeatProps) => {
                 _hover={{
                     bg: "#fff",
                     color: "#000",
-                    cursor: "pointer"
+                    cursor: "pointer",
                 }}
                 transition=".3s ease-in-out"
             >
                 <Image
                     width={"2rem"}
-                    src={isBooked ? "/images/booked.png" : "/images/unbooked.png"}
+                    src={
+                        isPresent
+                            ? "/images/latestBooked.png"
+                            : isBooked
+                                ? "/images/booked.png"
+                                : "/images/unbooked.png"
+                    }
                     alt={isBooked ? "B" : "A"}
                 />
                 <Text>{seatNumber}</Text>

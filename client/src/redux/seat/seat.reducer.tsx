@@ -1,5 +1,5 @@
 import { SeatReducerProps } from "../../types";
-import { BOOK_SEATS_ERROR, BOOK_SEATS_LOADING, BOOK_SEATS_SUCCESS, GET_ALL_SEATS_ERROR, GET_ALL_SEATS_LOADING, GET_ALL_SEATS_SUCCESS } from "./seat.actionTypes";
+import { BOOK_SEATS_ERROR, BOOK_SEATS_LOADING, BOOK_SEATS_SUCCESS, GET_ALL_SEATS_ERROR, GET_ALL_SEATS_LOADING, GET_ALL_SEATS_SUCCESS, RESET_SEATS_ERROR, RESET_SEATS_LOADING, RESET_SEATS_SUCCESS } from "./seat.actionTypes";
 
 // Initial state for the seat reducer
 const initialState: SeatReducerProps = {
@@ -9,6 +9,8 @@ const initialState: SeatReducerProps = {
     updateError: false,
     bookLoading: false,
     bookError: false,
+    resetLoading: false,
+    resetError: false,
     allSeats: [],
     bookedSeats: []
 }
@@ -28,6 +30,12 @@ export const reducer = (state = initialState, { type, payload }: any) => {
             return { ...state, bookLoading: false, bookedSeats: payload, bookError: false }; // Set bookLoading to false and update bookedSeats with the booked seats data
         case BOOK_SEATS_ERROR:
             return { ...state, bookLoading: false, bookError: true }; // Set bookLoading to false on error while booking seats
+        case RESET_SEATS_LOADING:
+            return { ...state, resetLoading: true, resetError: false };
+        case RESET_SEATS_SUCCESS:
+            return { ...state, ...initialState };
+        case RESET_SEATS_ERROR:
+            return { ...state, resetLoading: false, resetError: true };
         default:
             return state;
     }
