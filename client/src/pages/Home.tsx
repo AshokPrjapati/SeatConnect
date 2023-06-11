@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { Box, Button, Flex, Stack, Text } from "@chakra-ui/react";
 import { MdEventAvailable } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 const Home = () => {
     return (

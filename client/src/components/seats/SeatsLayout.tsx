@@ -1,9 +1,11 @@
-import { Box, Divider, Flex, Grid, Stack } from "@chakra-ui/react";
-import Seat from "./Seat";
-import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { SeatProps } from "../../types";
+import { Box, Divider, Flex, Grid, Stack } from "@chakra-ui/react";
+
+import Seat from "./Seat";
 import SeatStatusIndicator from "./SeatStatusIndicator";
+
+import { RootState } from "../../redux/store";
+import { SeatProps } from "../../types";
 
 interface SeatsLayoutProps {
     maxH?: string;

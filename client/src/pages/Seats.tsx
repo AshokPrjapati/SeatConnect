@@ -1,15 +1,19 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SeatsLayout from "../components/seats/SeatsLayout";
-import { RootState } from "../redux/store";
 import { Dispatch } from "redux";
-import { getAllSeats } from "../redux/seat/seat.action";
+
 import { Box, Heading, Spinner, Stack } from "@chakra-ui/react";
+
+import { RootState } from "../redux/store";
+import { getAllSeats } from "../redux/seat/seat.action";
+
+import SeatsLayout from "../components/seats/SeatsLayout";
 
 const Seats = () => {
     const { fetchLoading, fetchError } = useSelector(
         (store: RootState) => store.seatsManager
     );
+
     const dispatch: Dispatch<any> = useDispatch();
 
     useEffect(() => {
