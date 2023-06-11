@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="typescript" />
   <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="javascript" />
   <img src="https://img.shields.io/badge/Rest_API-02303A?style=for-the-badge&logo=react-router&logoColor=white" alt="restAPI" />
+  <img src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra-ui" />
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="html5" />
 </p>
 
@@ -60,6 +61,7 @@ SeatConnect allows users to reserve seats in a train coach, prioritizing booking
 - Seat Reservation
 - Row Priority Booking
 - Nearby Seat Booking
+- Real time seat booking status with visual seat layout
 - Efficient Seat Allocation
 - Reset Booking
 - Responsiveness
@@ -68,7 +70,7 @@ SeatConnect allows users to reserve seats in a train coach, prioritizing booking
 
 <br />
 
-## Glimpses of Nike-Clone 🙈 :
+## Glimpses of SeatConnect 🙈 :
 
 <table>
   <tr>
@@ -76,15 +78,12 @@ SeatConnect allows users to reserve seats in a train coach, prioritizing booking
     <td><img src="https://github.com/AshokPrjapati/SeatConnect/assets/107603976/832653a7-cfc5-42a0-b074-856860b1e673" alt="booking" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/AshokPrjapati/tech-assignment/assets/107603976/27c1c1a1-4f26-4d7a-839e-e326e4d30858" alt="signin" /></td>
-    <td><img src="https://github.com/AshokPrjapati/tech-assignment/assets/107603976/9e5b70a1-44f4-4400-a805-906298d74764" alt="signup" /></td>
+    <td><img src="https://github.com/AshokPrjapati/SeatConnect/assets/107603976/2731d262-890b-4723-a245-200009b1d0a4" alt="responsviness" /></td>
+    <td><img src="https://github.com/AshokPrjapati/SeatConnect/assets/107603976/0674ed7f-81fa-4327-b990-c95b1dc7a0c7" alt="seats layout" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/AshokPrjapati/tech-assignment/assets/107603976/e6aeda98-ed0b-4a51-a418-bc2e1bc663e5" alt="dashboard" /></td>
-    <td><img src="https://github.com/AshokPrjapati/tech-assignment/assets/107603976/f1e44c6d-9edf-4eff-999d-9a84d5eb86f1" alt="add car" /></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/AshokPrjapati/tech-assignment/assets/107603976/746dbd44-217a-43be-a093-8cdb88f2e53c" alt="edit car" /></td>
+    <td><img src="https://github.com/AshokPrjapati/SeatConnect/assets/107603976/18cd1a5b-71c8-49fd-bc8a-5d7965222607" alt="Loader" /></td>
+    <td><img src="https://github.com/AshokPrjapati/SeatConnect/assets/107603976/147fce32-f301-4696-9853-b9a4fa142df3" alt="seats" /></td>
   </tr>
 </table>
 
@@ -92,7 +91,7 @@ SeatConnect allows users to reserve seats in a train coach, prioritizing booking
 
 ## Getting Started
 
-This project was built using React, Typescript, Redux, HTML, CSS, JavaScript, Rest API, Node JS, Express and MongoDB with JWT. For running on your local environment you should follow these guidelines.
+This project was built using React, Typescript, Redux, HTML, CSS, JavaScript, Rest API, Node JS, Express and MongoDB. For running on your local environment you should follow these guidelines.
 
 ### Prerequisites
 
@@ -102,18 +101,18 @@ This project was built using React, Typescript, Redux, HTML, CSS, JavaScript, Re
 
 ### Setup
 
-The project repository can be found in [GitHub link](https://github.com/AshokPrjapati/tech-assignment.git) or just clone the project using this command.
+The project repository can be found in [GitHub link](https://github.com/AshokPrjapati/SeatConnect.git) or just clone the project using this command.
 
 ```
 Using HTTPS
 
-# git clone https://github.com/AshokPrjapati/tech-assignment.git
+# git clone https://github.com/AshokPrjapati/SeatConnect.git
 ```
 
 - Open terminal on your workspace with
 
 ```
-cd /home/workspace/tech-assignment
+cd /home/workspace/seatConnect
 ```
 
 ## Install
@@ -132,12 +131,6 @@ To confirm that you have npm installed you can run this command in your terminal
 
 ```
 npm -v
-```
-
-To confirm that you have MongoDB installed you can run this command in your terminal:
-
-```
-mongo -v
 ```
 
 To install all the dependences of the project, run the following command:
@@ -162,19 +155,17 @@ npm run dev
 
 ### Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file in server folder
+To run this project, you will need to add the following environment variables to your .env file
 
 - In client side
 
-  `VITE_BASE_URL`
-
-  `VITE_IMGBB_URL`
+  `VITE_SERVER_URL`
 
 - In server side
 
   `DB_URL`
 
-  `SECRET_KEY`
+  `ADMIN_CODE`
 
   `PORT`
 
