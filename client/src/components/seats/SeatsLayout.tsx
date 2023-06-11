@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Box, Divider, Flex, Grid, Stack } from "@chakra-ui/react";
 
@@ -15,6 +16,20 @@ interface SeatsLayoutProps {
 const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
     const { allSeats } = useSelector((store: RootState) => store.seatsManager);
 
+    // calculate total booked seats counts
+    const bookedSeatCount = useMemo(() => {
+        const bookedSeats = allSeats?.filter((seat: SeatProps) => seat.isBooked);
+        return bookedSeats?.length || 0;
+    }, [allSeats]);
+
+    // calculate available booked seats counts
+    const availbaleSeatCount = useMemo(() => {
+        const availableSeats = allSeats?.filter((seat: SeatProps) => !seat.isBooked);
+        return availableSeats?.length || 0;
+    }, [allSeats]);
+
+
+
     return (
         <>
             <Stack
@@ -31,14 +46,13 @@ const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
             >
                 <Box position="sticky" top="0" zIndex={9}>
                     <Flex
-                        fontWeight="bold"
                         gap=".5rem"
                         justifyContent={"center"}
                         backgroundColor="c_purple"
                         py="1rem"
                     >
-                        <SeatStatusIndicator bg="#c3c3c3" text="Booked" />
-                        <SeatStatusIndicator bg="#B5E61D" text="Available" />
+                        <SeatStatusIndicator bg="#c3c3c3" text="Booked" seatCount={bookedSeatCount} />
+                        <SeatStatusIndicator bg="#B5E61D" text="Available" seatCount={availbaleSeatCount} />
                     </Flex>
                     <Divider />
                 </Box>
