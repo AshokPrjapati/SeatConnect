@@ -40,7 +40,7 @@ export const resetAllSeats = (Toast: any) => async (dispatch: Dispatch) => {
         await axios("/seat/reset");
         dispatch({ type: RESET_SEATS_SUCCESS });
         Toast("All seats are reseted to unbooked", ToastType.success);
-    } catch (error) {
+    } catch (error: any) {
         console.log(error);
         dispatch({ type: RESET_SEATS_ERROR });
         Toast(error?.response?.data?.message || "Oops! something went wrong", ToastType.error);
