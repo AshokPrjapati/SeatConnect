@@ -19,7 +19,7 @@ const SeatStatusIndicator = ({ bg, text, seatCount }: SeatStatusIndicatorProp) =
             <Box backgroundColor={bg} w="2rem" h="2rem" borderRadius="5px"></Box>
             <Flex>
                 <Text ml={".5rem"}>{text}:</Text>
-                <Text ml={".5rem"}>{seatCount || ""}</Text>
+                <Text ml={".5rem"}>{seatCount || 0}</Text>
             </Flex>
         </Flex>
     );
