@@ -7,6 +7,7 @@ import SeatStatusIndicator from "./SeatStatusIndicator";
 
 import { RootState } from "../../redux/store";
 import { SeatProps } from "../../types";
+import { wrap } from "framer-motion";
 
 interface SeatsLayoutProps {
     maxH?: string;
@@ -14,7 +15,7 @@ interface SeatsLayoutProps {
 }
 
 const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
-    const { allSeats } = useSelector((store: RootState) => store.seatsManager);
+    const { allSeats, bookedSeats } = useSelector((store: RootState) => store.seatsManager);
 
     // calculate total booked seats counts
     const bookedSeatCount = useMemo(() => {
@@ -35,7 +36,6 @@ const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
             <Stack
                 px="1rem"
                 pb="1rem"
-                gap="1rem"
                 w={"max-content"}
                 color="c_white"
                 bg="c_purple"
@@ -43,19 +43,20 @@ const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
                 boxShadow="0 0 10px rgb(0,0,0)"
                 maxH={maxH || "auto"}
                 overflow={overflow || "none"}
+                rowGap={".5rem"}
             >
-                <Box position="sticky" top="0" zIndex={9}>
+                <Stack gap=".5rem" position="sticky" top="0" zIndex={9} backgroundColor="c_purple">
                     <Flex
                         gap=".5rem"
                         justifyContent={"center"}
-                        backgroundColor="c_purple"
-                        py="1rem"
+                        pt="1rem"
                     >
                         <SeatStatusIndicator bg="#c3c3c3" text="Booked" seatCount={bookedSeatCount} />
                         <SeatStatusIndicator bg="#B5E61D" text="Available" seatCount={availbaleSeatCount} />
                     </Flex>
+                    {bookedSeats.length !== 0 && <SeatStatusIndicator bg="red" text="Recent Booked" seatCount={availbaleSeatCount} />}
                     <Divider />
-                </Box>
+                </Stack>
 
                 <Grid
                     templateColumns={"repeat(7,1fr)"}
@@ -66,7 +67,7 @@ const SeatsLayout = ({ maxH, overflow }: SeatsLayoutProps) => {
                         <Seat key={seat._id} {...seat} />
                     ))}
                 </Grid>
-            </Stack>
+            </Stack >
         </>
     );
 };
