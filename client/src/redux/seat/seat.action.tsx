@@ -26,10 +26,10 @@ export const bookSeats = (seatsCount: number, Toast: any) => async (dispatch: Di
         dispatch(getAllSeats());
         dispatch({ type: BOOK_SEATS_SUCCESS, payload: data.bookedSeats });
         Toast("Seats booked successfully", ToastType.success);
-    } catch (error) {
+    } catch (error: any) {
         console.log(error);
         dispatch({ type: BOOK_SEATS_ERROR });
-        Toast("Oops! something went wrong", ToastType.error);
+        Toast(error?.response?.data?.message || "Oops! something went wrong", ToastType.error);
     }
 };
 
@@ -43,6 +43,6 @@ export const resetAllSeats = (Toast: any) => async (dispatch: Dispatch) => {
     } catch (error) {
         console.log(error);
         dispatch({ type: RESET_SEATS_ERROR });
-        Toast("Oops! something went wrong", ToastType.error);
+        Toast(error?.response?.data?.message || "Oops! something went wrong", ToastType.error);
     }
 };
