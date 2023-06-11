@@ -56,7 +56,7 @@ exports.deleteAllSeats = async (req, res) => {
 
 // seat booking
 exports.bookSeats = async (req, res) => {
-    const numSeats = req.body.seats; // Number of seats to book
+    const numSeats = req.body.seatsCount; // Number of seats to book
 
     if (!numSeats || numSeats <= 0 || numSeats > 7) {
         res.status(400).json({ message: "Invalid seats input" })
